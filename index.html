@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picture Identifier</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Picture Identifier</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="imageInput" name="image" accept="image/*" required style="background-color:rgba(0, 100, 0, 0.267);">
+            <button type="submit">Identify</button>
+        </form>
+        <div id="results" class="results" style="display:none;">
+            <h2>Uploaded Image:</h2>
+            <img id="uploadedImage" src="" alt="Uploaded Image" />
+            <h2>Predictions:</h2>
+            <div id="predictions"></div>
+            <a href="/"><b style="color: red;">Upload Another Image </b>
+            </a>
+        </div>
+    </div>
+    <script style="background-color: pink;">
+        const uploadForm = document.getElementById('uploadForm');
+        const resultsDiv = document.getElementById('results');
+        const predictionsDiv = document.getElementById('predictions');
+        const uploadedImage = document.getElementById('uploadedImage');
+
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(uploadForm);
+
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    predictionsDiv.innerHTML = '';
+                    data.predictions.forEach(pred => {
+                        const p = document.createElement('p');
+                        p.textContent = `${pred.label}: ${(pred.confidence * 100).toFixed(2)}%`;
+                        predictionsDiv.appendChild(p);
+                    });
+                    uploadedImage.src = data.image_url;
+                    resultsDiv.style.display = 'block';
+                    uploadForm.style.display = 'none';
+                } else {
+                    alert('Failed to process the image.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while identifying the image.');
+            }
+        });
+    </script>
+</body>
+</html>

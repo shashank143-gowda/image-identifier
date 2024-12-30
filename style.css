@@ -1,0 +1,73 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url(https://png.pngtree.com/background/20230412/original/pngtree-natural-forest-animals-quiet-picture-image_2394796.jpg);
+    background-size: cover;
+    color: palevioletred;
+}
+
+.container {
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUcXN8ijnp01K68SyD6qDNED5oyFp6CkMmwW9lOh0XO_aHJ5MBXgN42iWu0zcjQouQfDU&s);
+    background-size: cover;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: white;
+    max-width: 400px;
+    width: 90%;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #2575fc;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input[type="file"] {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+    background: #f4f4f4;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.results {
+    margin-top: 20px;
+}
+
+.results img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.results p {
+    margin: 10px 0;
+    font-size: 1rem;
+}
